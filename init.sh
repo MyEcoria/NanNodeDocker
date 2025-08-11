@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Chemin complet du dossier
 dir="/root/${name}"
 
-# Vérifie si le dossier existe
 if [ ! -d "$dir" ]; then
   mkdir "$dir"
   echo "Directory ${dir} created."
@@ -13,7 +11,6 @@ fi
 
 cd "$dir" || { echo "Unable to access directory ${dir}"; exit 1; }
 
-# Création de config-node.toml si il n'existe pas
 if [ ! -f "config-node.toml" ]; then
   cat > config-node.toml << EOF
 [node]
@@ -34,7 +31,7 @@ else
   echo "File config-node.toml already exists, creation skipped."
 fi
 
-# Création de config-rpc.toml si il n'existe pas
+
 if [ ! -f "config-rpc.toml" ]; then
   cat > config-rpc.toml << EOF
 port=${RPC_PORT}
